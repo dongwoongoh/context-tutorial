@@ -10,23 +10,23 @@ import (
 
 var stdin = bufio.NewReader(os.Stdin)
 
-func inputNumber() (int, error) {
+func inputNumber() (int, int, error) {
+	rand.Seed(time.Now().UnixNano())
+	r := rand.Intn(5) + 1
 	var n int
 	_, e := fmt.Scanln(&n)
 	if e != nil {
 		stdin.ReadString('\n')
 	}
-	return n, e
+	return n, r, e
 }
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
 	seedMoney := 1000
-	randomNumber := rand.Intn(5) + 1
 
 	for {
 		fmt.Print("please you enter number: ")
-		result, err := inputNumber()
+		result, randomNumber, err := inputNumber()
 		if err != nil {
 			fmt.Println("input type only number")
 		} else {
@@ -50,7 +50,6 @@ func main() {
 				} else {
 					seedMoney += 500
 					fmt.Println("collect! increase seed money!", seedMoney)
-					break
 				}
 			}
 		}
