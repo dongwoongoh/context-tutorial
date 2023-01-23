@@ -12,11 +12,11 @@ var stdin = bufio.NewReader(os.Stdin)
 
 func inputNumber() (int, error) {
 	var n int
-	v, e := fmt.Scanln(&n)
+	_, e := fmt.Scanln(&n)
 	if e != nil {
 		stdin.ReadString('\n')
 	}
-	return v, e
+	return n, e
 }
 
 func main() {
@@ -50,6 +50,7 @@ func main() {
 				} else {
 					seedMoney += 500
 					fmt.Println("collect! increase seed money!", seedMoney)
+					break
 				}
 			}
 		}
