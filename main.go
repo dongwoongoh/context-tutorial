@@ -52,12 +52,13 @@ L:
 					break L
 				}
 			} else {
-				if seedMoney >= fullMoney {
-					fmt.Println("enough seed money >= 5000!")
-					break
-				} else {
+				switch {
+				case seedMoney >= fullMoney:
+					fmt.Println("full money. you won!")
+					break L
+				case seedMoney < fullMoney:
 					seedMoney += winMoney
-					fmt.Println("collect! increase seed money!", seedMoney)
+					fmt.Println("success! increase your money 500", seedMoney)
 				}
 			}
 		}
