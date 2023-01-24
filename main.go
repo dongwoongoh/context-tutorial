@@ -8,6 +8,13 @@ import (
 	"time"
 )
 
+const (
+	startMoney = 1000
+	loseMoney  = 100
+	winMoney   = 500
+	fullMoney  = 5000
+)
+
 var stdin = bufio.NewReader(os.Stdin)
 
 func inputNumber() (int, int, error) {
@@ -22,7 +29,7 @@ func inputNumber() (int, int, error) {
 }
 
 func main() {
-	seedMoney := 1000
+	seedMoney := startMoney
 
 L:
 	for {
@@ -33,23 +40,23 @@ L:
 		} else {
 			if result != randomNumber {
 				switch {
-				case seedMoney < 100:
+				case seedMoney < loseMoney:
 					fmt.Println("not enough seed money < 100")
 					break L
-				case seedMoney > 100:
-					seedMoney -= 100
+				case seedMoney > loseMoney:
+					seedMoney -= loseMoney
 					fmt.Println("lose seed money! your seed money:", seedMoney)
-				case seedMoney == 100:
+				case seedMoney == loseMoney:
 					seedMoney = 0
 					fmt.Println("lose seed money. it is zero! game over")
 					break L
 				}
 			} else {
-				if seedMoney >= 5000 {
+				if seedMoney >= fullMoney {
 					fmt.Println("enough seed money >= 5000!")
 					break
 				} else {
-					seedMoney += 500
+					seedMoney += winMoney
 					fmt.Println("collect! increase seed money!", seedMoney)
 				}
 			}
