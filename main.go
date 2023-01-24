@@ -24,6 +24,7 @@ func inputNumber() (int, int, error) {
 func main() {
 	seedMoney := 1000
 
+L:
 	for {
 		fmt.Print("please you enter number: ")
 		result, randomNumber, err := inputNumber()
@@ -34,14 +35,14 @@ func main() {
 				switch {
 				case seedMoney < 100:
 					fmt.Println("not enough seed money < 100")
-					break
+					break L
 				case seedMoney > 100:
 					seedMoney -= 100
 					fmt.Println("lose seed money! your seed money:", seedMoney)
 				case seedMoney == 100:
 					seedMoney = 0
 					fmt.Println("lose seed money. it is zero! game over")
-					break
+					break L
 				}
 			} else {
 				if seedMoney >= 5000 {
